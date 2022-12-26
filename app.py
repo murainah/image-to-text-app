@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import pytesseract as tess
+import easyocr as ocr  #OCR
 tess.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
 import requests
 from PIL import Image
@@ -10,6 +11,8 @@ def image_to_text(url):
     img = Image.open(requests.get(url, stream=True).raw)
     text = tess.image_to_string(img)
     return text
+
+
 
 
 @app.route('/')
@@ -34,14 +37,17 @@ def result():
  
     final_text = []
     try:
-        text = image_to_text(url)
-        results = text.split('\n')
-        for r in results:
-            if r != "" and r !=" " and r !="  " and r !="   ":
-                final_text.append(r)
+        reader = ocr.Reader(['en'],model_storage_directory='.')
+
+        result = reader.readtext("outliers.jpeg")
+
+        for text in result:
+            result = text[1]
+        
+       
     except:
         return render_template("error.html", error = "Invalid Url")
 
-    print(text)
-    return render_template("result.html", result = text, url = url)
+    print(text[1])
+    return render_template("result.html", result = text[1], url = url)
 
