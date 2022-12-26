@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color:#fcfcfc;
+  }
+  h1{
+      font-size: 3em;
+      text-align: center;
+      text-transform: capitalize;
+      font-weight: 400;
+  }
+  .top-div{
+      margin-top: 20%;
+      align-items: center;
+  }
+  .result-top{
+    margin-top: 25px;
+    align-items: center;
+}
+  .form-control{
+      border-radius: 20px;
+  }
+  .results-img{
+    max-width: 700px;
+    width: 100em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 50px;
+  }
+  textarea{
+      margin-bottom: 25px;
+  }
